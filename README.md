@@ -1,2 +1,2 @@
-# DrNepro
-Doctors Assitance 
+# nephrocare-pro
+Smart Nephrology Assistant App
