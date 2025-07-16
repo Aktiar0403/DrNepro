@@ -1,3 +1,7 @@
+window.addEventListener('DOMContentLoaded', () => {
+
+
+
 import { medicines, getMedicinesForDiagnosis } from './medicines.js';
 import { diagnosisRules, loadDiagnosisRules, saveDiagnosisRules, addDiagnosisRule, deleteDiagnosisRule, generateDiagnosisText } from './diagnosis.js';
 
@@ -268,3 +272,4 @@ document.getElementById('print-prescription').addEventListener('click', () => {
   window.print();
   printableDiv.style.display = 'none';
 });
+})
