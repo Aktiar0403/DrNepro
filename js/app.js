@@ -298,4 +298,4 @@ document.getElementById('print-prescription').addEventListener('click', () => {
   printableDiv.style.display = 'none';
 
 });
-}):
+})
