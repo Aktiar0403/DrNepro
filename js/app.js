@@ -298,3 +298,6 @@ document.getElementById('print-prescription').addEventListener('click', () => {
   printableDiv.style.display = 'none';
 });
 })
+document.getElementById('generate-diagnosis').addEventListener('click', () => {
+  alert('Generate Diagnosis button clicked!');
+});
