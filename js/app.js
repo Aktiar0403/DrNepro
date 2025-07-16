@@ -2,7 +2,7 @@
 
 import { medicines, getMedicinesForDiagnosis } from './medicines.js';
 import { diagnosisRules, loadDiagnosisRules, saveDiagnosisRules, addDiagnosisRule, deleteDiagnosisRule, generateDiagnosisText } from './diagnosis.js';
-import './ui.js';
+
 
 window.addEventListener('DOMContentLoaded', () => {
 
