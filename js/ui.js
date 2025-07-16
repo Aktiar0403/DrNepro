@@ -1,13 +1,13 @@
-// ui.js
-
 document.addEventListener('DOMContentLoaded', () => {
-  const buttons = document.querySelectorAll('.accordion-button');
+  console.log("Accordion setup starting");
 
-  buttons.forEach(button => {
+  document.querySelectorAll('.accordion-button').forEach(button => {
     button.addEventListener('click', () => {
+      console.log("Accordion button clicked!");
       const content = button.nextElementSibling;
-      if (!content) return;
-      content.classList.toggle('show');
+      if (content) content.classList.toggle('show');
     });
   });
+
+  console.log("Accordion setup done");
 });
