@@ -193,13 +193,37 @@ function generateExportText(visit) {
 // Diagnosis generation button
 document.getElementById('generate-diagnosis').addEventListener('click', () => {
   const visitData = collectVisitData();
-  const diagnosisText = generateDiagnosisText(visitData);
+
+  // Check if user left everything empty
+  const allEmpty = Object.entries(visitData).every(([section, data]) => {
+    if (typeof data === 'object') {
+      return Object.values(data).every(val => !val || val === 'on' || val === '');
+    }
+    return !data;
+  });
+
+  let diagnosisText = "";
+
+  if (allEmpty) {
+    diagnosisText = "🩺 Please fill out the form to help me diagnose better! Health story begins with your words.";
+  } else {
+    diagnosisText = generateDiagnosisText(visitData);
+    if (diagnosisText.includes("No diagnosis suggestions matched")) {
+      diagnosisText = `🩺 Your data is a riddle yet unsolved.\nTell me symptoms, history, tests – so I may see the truth within.`;
+    }
+  }
+
   document.getElementById('doctor-diagnosis').value = diagnosisText;
   document.getElementById('patient-diagnosis').value = diagnosisText;
 
-  const meds = getMedicinesForDiagnosis(diagnosisText);
-  const medNames = meds.map(m => `${m.name} (${m.type})`).join('\n');
-  document.getElementById('med-name').value = medNames;
+  // Suggest medicines if diagnosisText is meaningful
+  if (!diagnosisText.includes("Please fill") && !diagnosisText.includes("riddle yet unsolved")) {
+    const meds = getMedicinesForDiagnosis(diagnosisText);
+    const medNames = meds.map(m => `${m.name} (${m.type})`).join('\n');
+    document.getElementById('med-name').value = medNames;
+  } else {
+    document.getElementById('med-name').value = '';
+  }
 });
 
 // Rule save
