@@ -506,7 +506,7 @@ export function getDefaultRules() {
 ];
 
     
-  ];
+  ;
 
 }
 
