@@ -4,7 +4,7 @@ import { medicines, getMedicinesForDiagnosis } from './medicines.js';
 import { diagnosisRules, loadDiagnosisRules, saveDiagnosisRules, addDiagnosisRule, deleteDiagnosisRule, generateDiagnosisText } from './diagnosis.js';
 
 
-window.addEventListener('DOMContentLoaded', () => {
+
 
 // Reference Ranges
 const referenceRanges = {
@@ -34,12 +34,26 @@ const exportButton = document.getElementById('export-button');
 const exportText = document.getElementById('export-text');
 
 // Accordion toggle
-document.querySelectorAll('.accordion-button').forEach(button => {
-  button.addEventListener('click', () => {
-    const content = button.nextElementSibling;
-    if (content) content.classList.toggle('show');
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('.accordion-button');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const content = button.nextElementSibling;
+
+      // Close all other accordion contents
+      document.querySelectorAll('.accordion-content').forEach(section => {
+        if (section !== content) {
+          section.classList.remove('show');
+        }
+      });
+
+      // Toggle current one
+      content.classList.toggle('show');
+    });
   });
 });
+
 
 // Load diagnosis rules at start
 loadDiagnosisRules();
@@ -298,4 +312,3 @@ document.getElementById('print-prescription').addEventListener('click', () => {
   printableDiv.style.display = 'none';
 
 });
-})
