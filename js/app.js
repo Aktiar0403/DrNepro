@@ -41,18 +41,15 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       const content = button.nextElementSibling;
 
-      // Close all other accordion contents
-      document.querySelectorAll('.accordion-content').forEach(section => {
-        if (section !== content) {
-          section.classList.remove('show');
-        }
-      });
-
-      // Toggle current one
-      content.classList.toggle('show');
+      if (content.classList.contains('show')) {
+        content.classList.remove('show');
+      } else {
+        content.classList.add('show');
+      }
     });
   });
 });
+
 
 
 // Load diagnosis rules at start

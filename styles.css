@@ -42,11 +42,14 @@ footer {
 
 .accordion-content {
   display: none;
-  padding: 0 1rem;
-  background-color: #e0f2f1;
-  border-radius: 5px;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  max-height: 0;
 }
-
+.accordion-content.show {
+  display: block;
+  max-height: 1000px; /* large enough for content */
+}
 .accordion-content.active {
   display: block;
   padding: 1rem;
